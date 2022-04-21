@@ -8,6 +8,7 @@ for (key, value) in student_dict.items():
     #Access key and value
     pass
 
+from encodings import search_function
 import pandas
 student_data_frame = pandas.DataFrame(student_dict)
 
@@ -32,12 +33,18 @@ nato_dict = {row.letter:row.code for (index, row) in nato_df.iterrows()}
 # print(nato_dict.items())
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
+def generate_nato():
+    word = input("Enter word: ").upper()
+    try:
+        phonetic = [nato_dict[letter] for letter in word]
+    except KeyError:
+        print("Please enter only characters from the superiour Englishe Alphabette")
+        generate_nato()
+    else:
+        print(phonetic)
+        generate_nato()
 
-word = input("Enter word: ").upper()
-
-phonetic = [nato_dict[letter] for letter in word]
-
-print(phonetic)
+generate_nato()
 
 """
 append the value from nato_dict where the value's key is the letter[i] in word
